@@ -29,7 +29,18 @@ def listar_pokemons():
     for i in range(0, quantidade_pokemons):
         id_pokemon = str(random.randint(1, 100))
         resposta = requests.get(("https://pokeapi.co/api/v2/pokemon/"+id_pokemon))
-        lista_pokemons.append(resposta.json())
+        
+        nome_pokemon = resposta.json()['name']
+        
+        numero_pokemon = resposta.json()['id']
+        
+        imagem_pokemon = resposta.json()['sprites']['other']['official-artwork']['front_default']
+        
+        lista_pokemons.append({
+            'id': numero_pokemon,
+            'nome': nome_pokemon,
+            'img': imagem_pokemon
+        })
         
         
     
